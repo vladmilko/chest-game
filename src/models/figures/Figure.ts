@@ -29,6 +29,7 @@ export class Figure {
     return true;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   moveFigure(target: Cell) {
     return;
   }
