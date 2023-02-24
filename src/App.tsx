@@ -8,10 +8,10 @@ import { Player } from './models/Player';
 import './styles.less';
 
 const App = () => {
-  const [board, setBoard] = useState(new Board());
+  const [board, setBoard] = useState(() => new Board());
 
-  const [playerWhite] = useState(new Player(ColorTypes.WHITE));
-  const [playerBlack] = useState(new Player(ColorTypes.BLACK));
+  const [playerWhite] = useState(() => new Player(ColorTypes.WHITE));
+  const [playerBlack] = useState(() => new Player(ColorTypes.BLACK));
   const [playerCurrent, setPlayerCurrent] = useState<Player | null>(null);
 
   useEffect(() => {

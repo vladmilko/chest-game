@@ -7,7 +7,7 @@ import { isSelectedCell } from './helpers';
 
 interface BoardProps {
   board: Board;
-  setBoard: (board: Board) => void;
+  setBoard: React.Dispatch<React.SetStateAction<Board>>;
   playerCurrent: Player | null;
   swapPlayer: () => void;
 }
@@ -37,18 +37,17 @@ export const BoardComponent: FC<BoardProps> = ({
   };
 
   const updateBoard = useCallback(() => {
-    const newBoard = board.getCopyBoard();
-    setBoard(newBoard);
-  }, [board]);
+    setBoard((board) => board.getCopyBoard());
+  }, [setBoard]);
 
   const highLightCells = () => {
     board.highLightCells(selectedCell);
+
     updateBoard();
   };
 
-  useEffect(() => {
-    highLightCells();
-  }, [selectedCell]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(highLightCells, [selectedCell]);
 
   return (
     <div>
